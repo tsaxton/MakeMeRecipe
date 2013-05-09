@@ -1,3 +1,5 @@
+{% block content %}
+
 <h1>Recipes:</h1>
 {% if query_response %}
     <ul>
@@ -8,3 +10,5 @@
 {% else %}
     <p>No recipes found for your query</p>
 {% endif %}
+
+{% endblock %}
