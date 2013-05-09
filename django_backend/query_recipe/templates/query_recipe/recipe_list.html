@@ -5,8 +5,13 @@
 <h1>Recipes:</h1>
 {% if query_response %}
     <ul>
-    {% for title in query_response %}
-        <li>{{ title }}</li>
+    {% for recipe in query_response %}
+        <li>{{ recipe.title }}</li>
+        <ul>
+    	{% for ingredient in recipe.ingredients %}
+        	<li>{{ingredient}}</li>	
+    	{% endfor %}
+    	</ul>
     {% endfor %}
     </ul>
 {% else %}

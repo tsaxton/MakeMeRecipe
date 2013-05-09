@@ -11,10 +11,11 @@ def API_request(query):
     #These are the fields we have available
     #print response['matches'][0].keys()
     
-    titles = []
+    datamodel = []
     for match in response['matches'][:10]:
-        titles[len(titles):] = [match['recipeName']]
-    return titles
+        recipe = {'title' : match['recipeName'], 'ingredients' : match['ingredients']}       
+        datamodel.append(recipe)
+    return datamodel
     
     
 def pretty_print(json_object):
