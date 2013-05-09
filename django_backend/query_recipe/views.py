@@ -5,7 +5,7 @@ from django.shortcuts import render
 import query_yummly
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the query_recipe index.")
+    return render(request, 'query_recipe/search.html',{})
 
 def query_recipe(request, API_query):
     query_response = query_yummly.API_request(API_query);
