@@ -1,0 +1,10 @@
+<h1>Recipes:</h1>
+{% if query_response %}
+    <ul>
+    {% for title in query_response %}
+        <li>{{ title }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No recipes found for your query</p>
+{% endif %}
