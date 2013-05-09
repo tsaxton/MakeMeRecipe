@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<head>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-  	<link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-	<style>
-		body {
-		    padding-left: 10px;
-		}
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+	body {
+	    padding-left: 10px;
+	}
   </style>
         
-	<header>
-		<h1>MakeMeRecipe?</h1>
-	</header>
+<header>
+	<h1>MakeMeRecipe?</h1>
+</header>
 	
-	<!--  Bootstrap horizontal form -->
-	<form class="form-horizontal">
-	<legend>Find Recipes</legend>
+<!--  Bootstrap horizontal form -->
+<form class="form-horizontal">
+<legend>Find Recipes</legend>
   <div class="control-group">
     <label class="control-label" for="inputIngredients">Ingredients:</label>
     <div class="controls">
@@ -52,4 +48,5 @@
     </div>
   </div>
 </form>
-</body>
+
+{% endblock content %}
