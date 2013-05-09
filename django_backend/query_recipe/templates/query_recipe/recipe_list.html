@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+	body {
+	    padding-left: 10px;
+	}
+</style>
   	
-<h1>Recipes:</h1>
+<h1>Search Results:</h1>
 {% if query_response %}
     <ul>
     {% for recipe in query_response %}
-        <li>{{ recipe.title }}</li>
+        <li><h2>{{ recipe.title }}</h2></li>
         <ul>
     	{% for ingredient in recipe.ingredients %}
         	<li>{{ingredient}}</li>	
