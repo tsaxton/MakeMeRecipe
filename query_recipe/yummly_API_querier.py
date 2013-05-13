@@ -10,11 +10,13 @@ def API_request(query):
     pretty_print(response)
     
     #These are the fields we have available
-    #print response['matches'][0].keys()
+    print response['matches'][0].keys()
     
     datamodel = []
     for match in response['matches'][:10]:
-        recipe = {'title' : match['recipeName'], 'ingredients' : match['ingredients']}       
+	image_urls = match['smallImageUrls'];
+	image = image_urls[0] if len(image_urls) != 0 else ''
+        recipe = {'title' : match['recipeName'], 'ingredients' : match['ingredients'], 'image' : image}       
         datamodel.append(recipe)
     return datamodel
     
@@ -22,3 +24,6 @@ def API_request(query):
 def pretty_print(json_object):
     print json.dumps(json_object, sort_keys=True, 
                      indent=4, separators=(',', ': '))
+
+datamodel = API_request('chicken')
+print datamodel

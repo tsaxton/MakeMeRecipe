@@ -2,24 +2,39 @@
 
 {% block content %}
 <style>
-	body {
-	    padding-left: 10px;
-	}
+    body {	
+        padding-left: 10px;
+    }
+
+    img {
+	max-height: 100%;
+	max-width: 100%;	    
+    }
 </style>
   	
-<h2>Search Results:</h2>
+<div class="page-header">
+    <h2>Search Results</h2>
+</div>
+
 {% if query_response %}
-    <ul>
+    <div class="bs-docs-grid">
     {% for recipe in query_response %}
-        <li><h3>{{ recipe.title }}</h3></li>
-        <ul>
-    	{% for ingredient in recipe.ingredients %}
-        	<li>{{ingredient}}</li>	
-    	{% endfor %}
-    	</ul>
+        <div class="row show-grid">
+	    <div class="span2">
+		<div class="thumbnail">
+		    <img src="{{recipe.image}}">
+		</div>
+	   </div>
+	    <div class="span10">
+		<h3>{{recipe.title}}</h3>
+	    </div>
+	</div>
     {% endfor %}
-    </ul>
+    </div>
+    
 {% else %}
-    <p>No recipes found for your query</p>
+    <p>
+    	No recipes found for your query!
+	</p>
 {% endif %}
 {% endblock %}
