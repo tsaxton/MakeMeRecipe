@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body {	
+        padding-left: 10px;
+    }
+
+    img {
+	max-height: 100%;
+	max-width: 100%;	    
+    }
+</style>
+  	
+<div class="page-header">
+    <h2>Search Results</h2>
+</div>
+
+{% if query_response %}
+    <div class="bs-docs-grid">
+    {% for recipe in query_response %}
+        <div class="row show-grid">
+	    <div class="span2">
+		<div class="thumbnail">
+		    <img src="{{recipe.image}}" width = 150 height = 150>
+		</div>
+	   </div>
+	    <div class="span10">
+		<h3>{{recipe.title}}</h3>
+		<ul>
+		{% for ingredient in recipe.ingredients %}
+		    <li>{{ingredient}}</li>  
+		{% endfor %}
+		</ul>
+	    </div>
+	</div>
+    {% endfor %}
+    </div>
+    
+{% else %}
+    <p>
+    	No recipes found for your query!
+	</p>
+{% endif %}
+{% endblock %}

@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^query_recipe/', include('query_recipe.urls')),
+    url(r'^search/', include('search.urls')),
 )
 
 urlpatterns += patterns('',
