@@ -22,11 +22,16 @@
         <div class="row show-grid">
 	    <div class="span2">
 		<div class="thumbnail">
-		    <img src="{{recipe.image}}">
+		    <img src="{{recipe.image}}" width = 150 height = 150>
 		</div>
 	   </div>
 	    <div class="span10">
 		<h3>{{recipe.title}}</h3>
+		<ul>
+		{% for ingredient in recipe.ingredients %}
+		    <li>{{ingredient}}</li>  
+		{% endfor %}
+		</ul>
 	    </div>
 	</div>
     {% endfor %}
