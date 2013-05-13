@@ -7,11 +7,11 @@
 	}
 </style>
   	
-<h1>Search Results:</h1>
+<h2>Search Results:</h2>
 {% if query_response %}
     <ul>
     {% for recipe in query_response %}
-        <li><h2>{{ recipe.title }}</h2></li>
+        <li><h3>{{ recipe.title }}</h3></li>
         <ul>
     	{% for ingredient in recipe.ingredients %}
         	<li>{{ingredient}}</li>	
