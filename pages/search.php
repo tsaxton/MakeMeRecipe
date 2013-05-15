@@ -1,34 +1,18 @@
-<!DOCTYPE html>
-<head>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-  <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-	<style>
-		body {
-		    padding-left: 10px;
-		}
-  </style>
-        
-	<header>
-		<h1>MakeMeRecipe?</h1>
-	</header>
-	
-	<!--  Bootstrap horizontal form -->
-	<form class="form-horizontal">
-	<legend>Find Recipes</legend>
+<!--  Bootstrap horizontal form -->
+<form class="form-horizontal" action="" method="GET">
+<input type="hidden" name="page" value="SearchResult">
+<h2>Find Recipes</h2>
   <div class="control-group">
     <label class="control-label" for="inputIngredients">Ingredients:</label>
     <div class="controls">
-      <input type="text" id="inputIngredients" placeholder="chicken, rice, oatmeal">
+      <input type="text" id="inputIngredients" name='ingredients' placeholder="chicken, rice, oatmeal">
     </div>
   </div>
-  <div class="control-group">
+  <!--<div class="control-group">
     <label class="control-label" for="inputTime">Prep Time:</label>
     <div class="controls">
       <div class="input-append">
-			  <input class="span2" id="inputTime" type="text" placeholder="30">
+			  <input class="span2" id="inputTime" name="time" type="text" placeholder="30">
 			  <span class="add-on">mins</span>
 			</div>
     </div>
@@ -45,11 +29,11 @@
 			  <option>Korean</option>
 			</select>
     </div>
-  </div>
+  </div>-->
   <div class="control-group">
     <div class="controls">
       <button type="submit" class="btn">Find Recipe</button>
     </div>
   </div>
 </form>
-</body>
+
