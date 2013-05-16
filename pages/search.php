@@ -1,7 +1,7 @@
 <!--  Bootstrap horizontal form -->
+<div class="page-header"><h2>Find Recipes</h2></div>
 <form class="form-horizontal" action="" method="GET">
     <input type="hidden" name="page" value="SearchResult">
-    <div class="page-header"><h2>Find Recipes</h2></div>
     <div class="control-group">
 	<label class="control-label" for="inputIngredients">Ingredients:</label>
 	<div class="controls">
