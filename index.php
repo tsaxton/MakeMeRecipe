@@ -21,6 +21,12 @@ else{
 <header>
     <h1>MakeMeRecipe</h1>
 </header>
+
+<style>
+body {
+    margin-left: 10px;
+}
+</style>
 <?php
 include "pages/$page.php";
 ?>
