@@ -1,2 +1,5 @@
 *.swo
 *.swp
+venv
+make-me-recipe-django
+search
