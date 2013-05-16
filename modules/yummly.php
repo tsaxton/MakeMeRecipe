@@ -42,7 +42,6 @@ function getRecipe($id){
     $ret['totalTimeInSeconds'] = $recipe['totalTimeInSeconds'];
 
     return $ret;
-;
 }
 
 function sortRecipesByParam($recipes, $sortparam){
