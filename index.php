@@ -22,8 +22,7 @@ else{
     <h1>MakeMeRecipe</h1>
 </header>
 <?php
-$includepage = $page . '.php';
-include "pages/$includepage";
+include "pages/$page.php";
 ?>
 </body>
 </html>
