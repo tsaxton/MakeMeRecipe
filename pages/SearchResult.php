@@ -11,20 +11,27 @@ if($_GET){
     } else{
     	$ingredients='';	
     }
+    if($_GET['cuisine']){
+	$cuisine = $_GET['cuisine'];
+    } else{
+	$cuisine=NULL;
+    }
 
-    $recipes = search($ingredients,$maxTotalTimeInSeconds);
+    $recipes = search($ingredients,$maxTotalTimeInSeconds, $cuisine);
     $sortedByPrep = sortRecipesByPrepTime($recipes);
     $recipes = $sortedByPrep;
 
     foreach($recipes as $recipe){
 	echo "<h2><a href=\"?page=recipe&id={$recipe['id']}\">{$recipe['name']}</a></h2>";
+	echo "Prep Time: " . $recipe['totalTimeInSeconds']/60 . " minutes<br>";
 	echo "Ingredients:\n<ul>";
 	foreach($recipe['ingredients'] as $ingredient){
 	    echo "<li>$ingredient</li>";
 	}
 	echo "</ul>";
     }
- else{
+}
+else{
     echo "You did not specify a query.";
 }
 ?>
