@@ -30,6 +30,13 @@
 			</select>
     </div>
   </div>-->
+<div class="control-group">
+    <label class="control-label" for="inputPreptime">Prep Time:</label>
+    <div class="controls">
+      <input type="text" id="prepTime" name='maxTotalTimeInSeconds' placeholder=" 10 min">
+    </div>
+  </div>
+
   <div class="control-group">
     <div class="controls">
       <button type="submit" class="btn">Find Recipe</button>
