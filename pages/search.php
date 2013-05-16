@@ -1,13 +1,13 @@
 <!--  Bootstrap horizontal form -->
 <form class="form-horizontal" action="" method="GET">
-<input type="hidden" name="page" value="SearchResult">
-<h2>Find Recipes</h2>
-  <div class="control-group">
-    <label class="control-label" for="inputIngredients">Ingredients:</label>
-    <div class="controls">
-      <input type="text" id="inputIngredients" name='ingredients' placeholder="chicken, rice, oatmeal">
+    <input type="hidden" name="page" value="SearchResult">
+    <div class="page-header"><h2>Find Recipes</h2></div>
+    <div class="control-group">
+	<label class="control-label" for="inputIngredients">Ingredients:</label>
+	<div class="controls">
+	    <input type="text" id="inputIngredients" name="ingredients" placeholder="chicken, rice, oatmeal">
+	</div>
     </div>
-  </div>
   <!--<div class="control-group">
     <label class="control-label" for="inputTime">Prep Time:</label>
     <div class="controls">
@@ -30,10 +30,17 @@
 			</select>
     </div>
   </div>-->
+<div class="control-group">
+    <label class="control-label" for="inputPreptime">Prep Time:</label>
+    <div class="controls">
+      <input type="text" id="prepTime" name='maxTotalTimeInSeconds' placeholder=" 10 min">
+    </div>
+  </div>
+
   <div class="control-group">
     <div class="controls">
       <button type="submit" class="btn">Find Recipe</button>
+	</div>
     </div>
-  </div>
 </form>
 

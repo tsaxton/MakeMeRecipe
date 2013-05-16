@@ -1,9 +1,12 @@
 <?php
-function search($query){
+function search($query, $time, $cuisine){
     $query = str_replace(' ','+',$query);
     $query = str_replace(',','+',$query);
     $base_url =  'http://api.yummly.com/v1/api/recipes?_app_id=6082fbf2&_app_key=f4346b48f9a52cac8385d1ba029074e7';
-    $query_url = $base_url . '&q=' . $query . '&maxTotalTimeInSeconds=3600';
+    $query_url = $base_url . '&q=' . $query . '&maxTotalTimeInSeconds='.$time;
+    if($cuisine){ 
+    $query_url .= '&allowedCuisine[]=cuisine^cuisine-'.$cuisine;
+    }      
     $results = file_get_contents($query_url);
     $data = json_decode($results,1);
 
@@ -57,17 +60,3 @@ function sortRecipesByPrepTime($recipes){
 }
 
 
-    /*html_response = urllib2.urlopen(query_url).read()
-    response = json.loads(html_response)
-    #pretty_print(response)
-
-    #These are the fields we have available
-    #print response['matches'][0].keys()
-
-    datamodel = []
-    for match in response['matches'][:10]:
-        #recipe = {'title' : match['recipeName'], 'ingredients' : match['ingredients']}
-        recipe = {'title' : match['recipeName'], 'ingredients' : match['ingredients'], 'id' : match['id']}
-        datamodel.append(recipe)
-    return datamodel
-*/
