@@ -19,36 +19,40 @@ if($_GET){
     }
 
     $recipes = search($ingredients,$maxTotalTimeInSeconds, $cuisine);
-    $sortedByPrep = sortRecipesByPrepTime($recipes);
-    $recipes = $sortedByPrep;
+    if($recipes){
+	$recipes = sortRecipesByPrepTime($recipes);
 
-    echo "<div class='bs-docs-grid'>";
-    foreach($recipes as $recipe){
-	echo "
-	<div class='row show-grid'>
-	    <div class='span1'>
-	";	
-	if($recipe['image']){
-	echo "<img src='{$recipe['image']}' class='img-rounded' align='center'>";
+	echo "<div class='bs-docs-grid'>";
+	foreach($recipes as $recipe){
+	    echo "
+	    <div class='row show-grid'>
+		<div class='span1'>
+	    ";	
+	    if($recipe['image']){
+	    echo "<img src='{$recipe['image']}' class='img-rounded' align='center'>";
+	    }
+	    echo "
+		</div>
+		<div class='span11'>
+		    <h2><a href=\"http://www.yummly.com/recipe/{$recipe['id']}\">{$recipe['name']}</h2>
+		    <p>See Recipe on Yummly</p></a>
+		    <p>Prep Time: " . $recipe['totalTimeInSeconds'] . " minutes</p>
+		    <p>Ingredients:</p>
+		    <ul>
+	    ";
+	    foreach($recipe['ingredients'] as $ingredient){
+		echo "<li>$ingredient</li>";
+	    }
+	    echo "
+		    </ul>
+		</div>
+	    </div>";
 	}
-	echo "
-	    </div>
-	    <div class='span11'>
-		<h2><a href=\"http://www.yummly.com/recipe/{$recipe['id']}\">{$recipe['name']}</h2>
-		<p>See Recipe on Yummly</p></a>
-		<p>Prep Time: " . $recipe['totalTimeInSeconds']/60 . " minutes</p>
-		<p>Ingredients:</p>
-		<ul>
-	";
-	foreach($recipe['ingredients'] as $ingredient){
-	    echo "<li>$ingredient</li>";
-	}
-	echo "
-		</ul>
-	    </div>
-	</div>";
+	echo "</div>";
     }
-    echo "</div>";
+    else{
+	echo "<p>Sorry, your recipe search did not return any results.</p>";
+    }
 }
 else{
     echo "You did not specify a query.";

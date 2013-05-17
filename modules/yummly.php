@@ -12,12 +12,28 @@ function search($query, $time, $cuisine){
 
     $match = $data['matches'];
 
-    for($i=0; $i < 10; $i++){
+    if(count($match) >= 10){
+	$size = 10;
+    }
+    else{
+	$size = count($match);
+    }
+
+    for($i=0; $i < $size; $i++){
 	$recipe[$i]['name'] = $match[$i]['recipeName'];
 	$recipe[$i]['id'] = $match[$i]['id'];
 	$recipe[$i]['ingredients'] = $match[$i]['ingredients'];
 	$recipe[$i]['totalTimeInSeconds'] = $match[$i]['totalTimeInSeconds'];
-	$recipe[$i]['image'] = $match[$i]['smallImageUrls'][0];
+	if(count($match[$i]['smallImageUrls']) > 0){
+	    $recipe[$i]['image'] = $match[$i]['smallImageUrls'][0];
+	}
+	else{
+	    $recipe[$i]['image'] = null;
+	}
+    }
+
+    if($size == 0){
+	$recipe = null;
     }
 
     return $recipe;
