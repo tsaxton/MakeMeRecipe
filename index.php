@@ -11,11 +11,14 @@ else{
     $page = 'search';
 }
 ?>
-<html>
+<!doctype html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MakeMeRecipe</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="all">
+    <link rel="stylesheet"  href="css/main.css" media="all">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 </head>
 <body>
 <header>
