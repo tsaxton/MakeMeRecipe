@@ -22,13 +22,16 @@ if($_GET){
     $recipes = $sortedByPrep;
 
     foreach($recipes as $recipe){
+	if($recipe['image']){
+	echo "<img src=\"{$recipe['image']}\" class=\"img-rounded\" align=\"left\">";
+	}
 	echo "<h2><a href=\"?page=recipe&id={$recipe['id']}\">{$recipe['name']}</a></h2>";
-	echo "Prep Time: " . $recipe['totalTimeInSeconds']/60 . " minutes<br>";
+	echo "<p>Prep Time: " . $recipe['totalTimeInSeconds']/60 . " minutes<br>";
 	echo "Ingredients:\n<ul>";
 	foreach($recipe['ingredients'] as $ingredient){
 	    echo "<li>$ingredient</li>";
 	}
-	echo "</ul>";
+	echo "</ul></p>";
     }
 }
 else{

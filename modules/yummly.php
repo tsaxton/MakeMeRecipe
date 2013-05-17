@@ -17,6 +17,7 @@ function search($query, $time, $cuisine){
 	$recipe[$i]['id'] = $match[$i]['id'];
 	$recipe[$i]['ingredients'] = $match[$i]['ingredients'];
 	$recipe[$i]['totalTimeInSeconds'] = $match[$i]['totalTimeInSeconds'];
+	$recipe[$i]['image'] = $match[$i]['smallImageUrls'][0];
     }
 
     return $recipe;
