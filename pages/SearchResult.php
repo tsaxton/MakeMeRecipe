@@ -5,7 +5,7 @@ if($_GET){
 	$maxTotalTimeInSeconds=$_GET['maxTotalTimeInSeconds'];
 	$maxTotalTimeInSeconds=$maxTotalTimeInSeconds*60;
     } else{
-	$maxTotalTimeInSeconds=3600;
+	$maxTotalTimeInSeconds=100000;
     }
     if($_GET['ingredients']){
     	$ingredients= $_GET['ingredients'];
@@ -22,6 +22,7 @@ if($_GET){
     if($recipes){
 	$recipes = sortRecipesByPrepTime($recipes);
 
+	//echo "<pre>"; var_dump($recipes); echo "</pre>";
 	echo "<div class='bs-docs-grid'>";
 	foreach($recipes as $recipe){
 	    echo "
@@ -36,7 +37,7 @@ if($_GET){
 		<div class='span11'>
 		    <h2><a href=\"http://www.yummly.com/recipe/{$recipe['id']}\">{$recipe['name']}</h2>
 		    <p>See Recipe on Yummly</p></a>
-		    <p>Prep Time: " . $recipe['totalTimeInSeconds'] . " minutes</p>
+		    <p>Total Time: " . $recipe['totalTimeInSeconds']/60 . " minutes</p>
 		    <p>Ingredients:</p>
 		    <ul>
 	    ";

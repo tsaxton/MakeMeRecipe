@@ -36,6 +36,8 @@ function search($query, $time, $cuisine){
 	$recipe = null;
     }
 
+    //echo "<pre>"; var_dump($recipe); echo "</pre>";
+
     return $recipe;
 }
 
