@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', True);
 
-include('modules/fatsecret.php');
+include('modules/yummly.php');
 
 if(array_key_exists('page',$_GET)){
     $page = $_GET['page'];

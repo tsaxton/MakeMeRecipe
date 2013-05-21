@@ -1,0 +1,3 @@
+API access key: 34406636bbeb4ffe8ebab1aa2d415488
+REST API consumer key is same as API access key
+REST API shared secret: 934d7557c20849c4860384e2f20b9872
