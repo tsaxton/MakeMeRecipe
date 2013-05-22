@@ -1,5 +1,5 @@
 <?php
-include 'modules/simple_html_dom.php';
+include 'simple_html_dom.php';
 
 function getTime($url){
     $html = file_get_html($url);
