@@ -3,6 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', True);
 
 include('modules/yummly.php');
+include('modules/databaseLogin.php');
 
 if(array_key_exists('page',$_GET)){
     $page = $_GET['page'];
