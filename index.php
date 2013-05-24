@@ -7,6 +7,7 @@ ini_set('display_errors', True);
 include_once('modules/yummly.php');
 include_once('modules/sort.php');
 include_once('modules/databaselogin.php');
+include_once('modules/scraper.php');
 
 if(array_key_exists('page',$_GET)){
     $page = $_GET['page'];

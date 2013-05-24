@@ -1,8 +1,20 @@
 <?php
 include 'simple_html_dom.php';
 
-function getTime($url){
+class Scrapper {
+
+$html = NULL;
+
+public function Scrapper($url) {
     $html = file_get_html($url);
+}
+
+private function getServingSize() {
+    $yieldTag = $html->find('span[class=yield]')[0];
+    $yieldString = $yieldTag->plaintext;
+    return $yieldString;	
+}
+private function getTime($url){
     foreach($html->find('div[class=definition]') as $div){
 	//echo $div;
 	foreach($div->find('h5') as $ob){
@@ -14,7 +26,7 @@ function getTime($url){
     return -1;
 }
 
-function interpTime($str){
+private function interpTime($str){
     $pieces = explode(" ",$str);
     $time = 0;
     //var_dump($pieces);
@@ -37,7 +49,8 @@ function testConversion($url,$actual){
     //echo $time . "<br>" . $actual . "<hr>";
 }
 
-function getPrepTime($id) {
+    
+public function getPrepTime($id) {
     $query = 'SELECT time FROM preptimes WHERE yummly_id =' .$id;
     $result = dbQuery($query);
     if ($result) {
@@ -57,8 +70,7 @@ function getPrepTime($id) {
         return $timeInSeconds;
     }
 }
-
-
+}
 // Tests
 /*testConversion('http://www.yummly.com/recipe/Thai-coconut-chicken-noodle-soup-350876','3600');
 testConversion('http://www.yummly.com/recipe/Tex-mex-chicken-and-rice-soup-351658','3900');
@@ -70,6 +82,5 @@ testConversion('http://www.yummly.com/recipe/Saffron-Rice-The-Shiksa-Blog-46555'
 testConversion('http://www.yummly.com/recipe/Chicken-Wild-Rice-Soup-TasteOfHome','3000');
 testConversion('http://www.yummly.com/recipe/One_Pot-Chicken-and-Brown-Rice-Martha-Stewart','3900');
 testConversion('http://www.yummly.com/recipe/Salsa-Chicken-Rice-Casserole-Allrecipes','4800');*/
-
 
 ?>
