@@ -15,10 +15,15 @@ if($_GET){
     if($_GET['cuisine']){
 	$cuisine = $_GET['cuisine'];
     } else{
-	$cuisine=NULL;
+	   $cuisine=NULL;
+    }
+    if($_GET['excludedIngredient']){
+    $excluded=$_GET['excludedIngredient'];
+    } else{
+    	$excluded=NULL;
     }
 
-    $recipes = search($ingredients,$maxTotalTimeInSeconds, $cuisine);
+    $recipes = search($ingredients,$maxTotalTimeInSeconds, $cuisine,$excluded);
     if($recipes){
 	$recipes = sortRecipesByPrepTime($recipes);
 
