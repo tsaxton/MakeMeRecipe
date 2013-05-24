@@ -15,6 +15,7 @@ function search($query, $time, $cuisine,$excluded){
 	    $query_url .= '&excludedIngredient[]='.urlencode($food);
 	}
     }
+    $query_url .= '&maxResult=50&maxTotalTimeInSeconds=100000';
     $results = file_get_contents($query_url);
     $data = json_decode($results,1);
 
@@ -34,6 +35,7 @@ function search($query, $time, $cuisine,$excluded){
 	$recipe[$i]['id'] = $id;
 	$recipe[$i]['ingredients'] = $match[$i]['ingredients'];
 	$recipe[$i]['totalTimeInSeconds'] = $scraper->getPrepTime();
+	//echo $recipe[$i]['totalTimeInSeconds'].'<br>';
 	if(count($match[$i]['smallImageUrls']) > 0){
 	    $recipe[$i]['image'] = $match[$i]['smallImageUrls'][0];
 	}
