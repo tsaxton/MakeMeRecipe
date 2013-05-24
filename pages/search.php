@@ -9,7 +9,7 @@
 	</div>
     </div>
     <div class="control-group">
-	<label class="control-label" for="inputTime">Prep Time:</label>
+	<label class="control-label" for="inputTime">Total Time:</label>
 	<div class="controls">
       	    <div class="input-append">
 		<input class="span2" id="inputTime" name="maxTotalTimeInSeconds" type="text" placeholder="60">
