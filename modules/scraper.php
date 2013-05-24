@@ -37,6 +37,22 @@ function testConversion($url,$actual){
     //echo $time . "<br>" . $actual . "<hr>";
 }
 
+function getPrepTime($id) {
+    $query = 'SELECT time FROM preptimes WHERE yummly_id =' .$id;
+    $result = dbQuery($query);
+    if ($result) {
+        return $result;
+    } else {
+        $url = 'http://www.yummly.com/recipe/'.$id;
+        $time = getTime($url);
+        $timeInSeconds = interpTime($time);
+        $insertToDb = 'INSERT INTO preptimes VALUES('.$id. ',' .$timeInSeconds. ')';
+        dbQuery($insertToDb);
+        return $timeInSeconds;
+    }
+}
+
+
 // Tests
 /*testConversion('http://www.yummly.com/recipe/Thai-coconut-chicken-noodle-soup-350876','3600');
 testConversion('http://www.yummly.com/recipe/Tex-mex-chicken-and-rice-soup-351658','3900');
