@@ -12,7 +12,7 @@ function search($query, $time, $cuisine,$excluded){
     if($excluded){
 	$exclude = str_getcsv($excluded);
 	foreach($exclude as $food){
-	    $query_url .= '&excludedIngredient[]='.$food;
+	    $query_url .= '&excludedIngredient[]='.urlencode($food);
 	}
     }
     $results = file_get_contents($query_url);
