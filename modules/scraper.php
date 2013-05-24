@@ -3,20 +3,27 @@ include 'simple_html_dom.php';
 
 class Scrapper {
 
-$html = NULL;
+var $html;
+var $id = NULL;
 
-public function Scrapper($url) {
-    $html = file_get_html($url);
+public function Scrapper($aid) {
+    $this->id = $aid;
+    $url = 'http://www.yummly.com/recipe/'.$aid;
+    //$this->html = new simple_html_dom();
+    $this->html = file_get_html($url);
 }
 
 private function getServingSize() {
-    $yieldTag = $html->find('span[class=yield]')[0];
+    $str = $this->html;
+    $yieldTag = $str->find('span[class=yield]')[0];
     $yieldString = $yieldTag->plaintext;
     return $yieldString;	
 }
-private function getTime($url){
-    foreach($html->find('div[class=definition]') as $div){
-	//echo $div;
+private function getTime(){
+    //var_dump($this->html);
+    //$ret = $this->html->find('div[class=definition]');
+    foreach($this->html->find('div[class=definition]') as $div){
+	echo $div;
 	foreach($div->find('h5') as $ob){
 	    if(is_numeric(strpos($ob,'Total Time'))){
 		return $div->plaintext;
@@ -43,29 +50,29 @@ private function interpTime($str){
     return $time;
 }
 
-function testConversion($url,$actual){
+/*function testConversion($url,$actual){
     $timeStr = getTime($url);
     $time = interpTime($timeStr);
     //echo $time . "<br>" . $actual . "<hr>";
-}
+}*/
 
     
-public function getPrepTime($id) {
-    $query = 'SELECT time FROM preptimes WHERE yummly_id =' .$id;
+public function getPrepTime() {
+    $query = 'SELECT time FROM preptimes WHERE yummly_id =' .$this->id;
     $result = dbQuery($query);
     if ($result) {
         return $result;
     } else {
-        $url = 'http://www.yummly.com/recipe/'.$id;
-        $time = getTime($url);
+        $url = 'http://www.yummly.com/recipe/'.$this->id;
+        $time = $this->getTime();
         if(!is_numeric($time)){
-                $timeInSeconds = interpTime($time);
+                $timeInSeconds = $this->interpTime($time);
         }
         else{
                 $timeInSeconds = -1;
         }
-        $insertToDb = "INSERT INTO preptimes VALUES ('$id',$timeInSeconds)";
-        echo $insertToDb . "<br>";
+        $insertToDb = "INSERT INTO preptimes VALUES ('{$this->id}',$timeInSeconds)";
+        //echo $insertToDb . "<br>";
         mysql_query($insertToDb);
         return $timeInSeconds;
     }

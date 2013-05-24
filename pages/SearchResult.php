@@ -1,7 +1,7 @@
 <div class="page-header"><h2>Search Results</h2></div>
 <?php
 
-include_once('modules/scrapper.php');
+include_once('modules/scraper.php');
 
 if($_GET){
     if ($_GET['maxTotalTimeInSeconds']){

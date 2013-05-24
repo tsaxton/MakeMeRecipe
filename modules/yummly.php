@@ -22,10 +22,12 @@ function search($query, $time, $cuisine){
     }
 
     for($i=0; $i < $size; $i++){
+	$id = $match[$i]['id'];
+	$scraper = new Scrapper($id);
 	$recipe[$i]['name'] = $match[$i]['recipeName'];
-	$recipe[$i]['id'] = $match[$i]['id'];
+	$recipe[$i]['id'] = $id;
 	$recipe[$i]['ingredients'] = $match[$i]['ingredients'];
-	$recipe[$i]['totalTimeInSeconds'] = getPrepTime($match[$i]['id']);
+	$recipe[$i]['totalTimeInSeconds'] = $scraper->getPrepTime();
 	if(count($match[$i]['smallImageUrls']) > 0){
 	    $recipe[$i]['image'] = $match[$i]['smallImageUrls'][0];
 	}
