@@ -68,6 +68,7 @@ function getRecipe($id){
     $ret['rating'] = $recipe['rating'];
     $ret['servings'] = $recipe['numberOfServings'];
     $ret['totalTimeInSeconds'] = $recipe['totalTimeInSeconds'];
+ 
 
     return $ret;
 }
