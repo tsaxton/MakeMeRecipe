@@ -23,7 +23,7 @@ private function getTime(){
     //var_dump($this->html);
     //$ret = $this->html->find('div[class=definition]');
     foreach($this->html->find('div[class=definition]') as $div){
-	echo $div;
+	//echo $div;
 	foreach($div->find('h5') as $ob){
 	    if(is_numeric(strpos($ob,'Total Time'))){
 		return $div->plaintext;

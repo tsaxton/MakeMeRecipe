@@ -34,6 +34,7 @@ function search($query, $time, $cuisine){
 	else{
 	    $recipe[$i]['image'] = null;
 	}
+	unset($scraper);
     }
 
     for($i=0; $i < $size; $i++){
