@@ -1,16 +1,20 @@
 <?php
 include 'simple_html_dom.php';
 
+class Scrapper {
+
 $html = NULL;
 
-function loadURL($url){
-    if($html == NULL){
-	$html = file_get_html($url);
-    }
-    return $html;
+public function Scrapper($url) {
+    $html = file_get_html($url);
 }
-function getTime($url){
-    $html =loadURL($url);
+
+private function getServingSize() {
+    $yieldTag = $html->find('span[class=yield]')[0];
+    $yieldString = $yieldTag->plaintext;
+    return $yieldString;	
+}
+private function getTime($url){
     foreach($html->find('div[class=definition]') as $div){
 	//echo $div;
 	foreach($div->find('h5') as $ob){
@@ -22,7 +26,7 @@ function getTime($url){
     return -1;
 }
 
-function interpTime($str){
+private function interpTime($str){
     $pieces = explode(" ",$str);
     $time = 0;
     //var_dump($pieces);
@@ -45,11 +49,8 @@ function testConversion($url,$actual){
     //echo $time . "<br>" . $actual . "<hr>";
 }
 
-<<<<<<< HEAD
-function getServingSize($url){
     
-=======
-function getPrepTime($id) {
+public function getPrepTime($id) {
     $query = 'SELECT time FROM preptimes WHERE yummly_id =' .$id;
     $result = dbQuery($query);
     if ($result) {
@@ -63,9 +64,7 @@ function getPrepTime($id) {
         return $timeInSeconds;
     }
 }
-
-
->>>>>>> 7cfdfd72bd1f8b349ea4a8c087055a804486365d
+}
 // Tests
 /*testConversion('http://www.yummly.com/recipe/Thai-coconut-chicken-noodle-soup-350876','3600');
 testConversion('http://www.yummly.com/recipe/Tex-mex-chicken-and-rice-soup-351658','3900');
