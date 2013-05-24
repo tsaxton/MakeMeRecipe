@@ -3,3 +3,4 @@
 venv
 make-me-recipe-django
 search
+.DS_Store

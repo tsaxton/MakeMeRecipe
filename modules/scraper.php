@@ -1,8 +1,16 @@
 <?php
 include 'simple_html_dom.php';
 
+$html = NULL;
+
+function loadURL($url){
+    if($html == NULL){
+	$html = file_get_html($url);
+    }
+    return $html;
+}
 function getTime($url){
-    $html = file_get_html($url);
+    $html =loadURL($url);
     foreach($html->find('div[class=definition]') as $div){
 	//echo $div;
 	foreach($div->find('h5') as $ob){
@@ -37,6 +45,8 @@ function testConversion($url,$actual){
     //echo $time . "<br>" . $actual . "<hr>";
 }
 
+function getServingSize($url){
+    
 // Tests
 /*testConversion('http://www.yummly.com/recipe/Thai-coconut-chicken-noodle-soup-350876','3600');
 testConversion('http://www.yummly.com/recipe/Tex-mex-chicken-and-rice-soup-351658','3900');

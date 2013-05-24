@@ -43,6 +43,7 @@ if($_GET){
 		    <h2><a href=\"http://www.yummly.com/recipe/{$recipe['id']}\">{$recipe['name']}</h2>
 		    <p>See Recipe on Yummly</p></a>
 		    <p>Total Time: " . $recipe['totalTimeInSeconds']/60 . " minutes</p>
+		    <p>Servings: I really have no idea </p> 
 		    <p>Ingredients:</p>
 		    <ul>
 	    ";
