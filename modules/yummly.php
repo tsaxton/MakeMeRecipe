@@ -1,14 +1,20 @@
 <?php
 include 'scraper.php';
 
-function search($query, $time, $cuisine){
+function search($query, $time, $cuisine,$excluded){
     $query = str_replace(' ','+',$query);
     $query = str_replace(',','+',$query);
     $base_url =  'http://api.yummly.com/v1/api/recipes?_app_id=6082fbf2&_app_key=f4346b48f9a52cac8385d1ba029074e7';
     $query_url = $base_url . '&q=' . $query;
     if($cuisine){ 
-    $query_url .= '&allowedCuisine[]=cuisine^cuisine-'.$cuisine;
+	$query_url .= '&allowedCuisine[]=cuisine^cuisine-'.$cuisine;
     }      
+    if($excluded){
+	$exclude = str_getcsv($excluded);
+	foreach($exclude as $food){
+	    $query_url .= '&excludedIngredient[]='.$food;
+	}
+    }
     $results = file_get_contents($query_url);
     $data = json_decode($results,1);
 
