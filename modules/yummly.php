@@ -1,21 +1,14 @@
 <?php
-function search($query, $time, $cuisine,$excluded){
+include 'scraper.php';
+
+function search($query, $time, $cuisine){
     $query = str_replace(' ','+',$query);
     $query = str_replace(',','+',$query);
     $base_url =  'http://api.yummly.com/v1/api/recipes?_app_id=6082fbf2&_app_key=f4346b48f9a52cac8385d1ba029074e7';
-    $query_url = $base_url . '&q=' . $query . '&maxTotalTimeInSeconds='.$time;
+    $query_url = $base_url . '&q=' . $query;
     if($cuisine){ 
     $query_url .= '&allowedCuisine[]=cuisine^cuisine-'.$cuisine;
-    }  
-
-    if($excluded){
-        $exer=str_getcsv($excluded,',');
-        foreach($exer as $exfood )
-        {
-        $query_url.='&excludedIngredient[]='.$exfood;
-        }
-    }  
-
+    }      
     $results = file_get_contents($query_url);
     $data = json_decode($results,1);
 
@@ -32,7 +25,7 @@ function search($query, $time, $cuisine,$excluded){
 	$recipe[$i]['name'] = $match[$i]['recipeName'];
 	$recipe[$i]['id'] = $match[$i]['id'];
 	$recipe[$i]['ingredients'] = $match[$i]['ingredients'];
-	$recipe[$i]['totalTimeInSeconds'] = $match[$i]['totalTimeInSeconds'];
+	$recipe[$i]['totalTimeInSeconds'] = getPrepTime($match[$i]['id']);
 	if(count($match[$i]['smallImageUrls']) > 0){
 	    $recipe[$i]['image'] = $match[$i]['smallImageUrls'][0];
 	}
@@ -40,6 +33,14 @@ function search($query, $time, $cuisine,$excluded){
 	    $recipe[$i]['image'] = null;
 	}
     }
+
+    for($i=0; $i < $size; $i++){
+        if ($recipe[$i]['totalTimeInSeconds'] > $time || $recipe[$i]['totalTimeInSeconds'] == -1){
+            unset($recipe[$i]);
+        } 
+    }
+    $recipe = array_values($recipe);
+    $size = count($recipe);
 
     if($size == 0){
 	$recipe = null;

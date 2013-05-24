@@ -45,9 +45,15 @@ function getPrepTime($id) {
     } else {
         $url = 'http://www.yummly.com/recipe/'.$id;
         $time = getTime($url);
-        $timeInSeconds = interpTime($time);
-        $insertToDb = 'INSERT INTO preptimes VALUES('.$id. ',' .$timeInSeconds. ')';
-        dbQuery($insertToDb);
+        if(!is_numeric($time)){
+                $timeInSeconds = interpTime($time);
+        }
+        else{
+                $timeInSeconds = -1;
+        }
+        $insertToDb = "INSERT INTO preptimes VALUES ('$id',$timeInSeconds)";
+        echo $insertToDb . "<br>";
+        mysql_query($insertToDb);
         return $timeInSeconds;
     }
 }
