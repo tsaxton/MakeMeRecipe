@@ -77,5 +77,4 @@ testConversion('http://www.yummly.com/recipe/Chicken-Wild-Rice-Soup-TasteOfHome'
 testConversion('http://www.yummly.com/recipe/One_Pot-Chicken-and-Brown-Rice-Martha-Stewart','3900');
 testConversion('http://www.yummly.com/recipe/Salsa-Chicken-Rice-Casserole-Allrecipes','4800');*/
 
-
 ?>
