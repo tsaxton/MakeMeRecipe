@@ -17,6 +17,14 @@
 	    </div>
     	</div>
     </div>
+
+    <div class="control-group">
+	<label class="control-label" for="excludedIngredient">Excluded ingredients:</label>
+	<div class="controls">
+	    <input type="text" id="excludedIngredient" name="excludedIngredient" placeholder="onion,olives">
+	</div>
+    </div>
+
     <div class="control-group">
     <label class="control-label" for="inputCuisine">Cuisine Type:</label>
     <div class="controls">
