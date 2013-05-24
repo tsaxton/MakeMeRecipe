@@ -2,7 +2,7 @@
 $username = 'eecs394orange';
 $password = 'Save me some money';
 
-$db = mysql_connect(localhost,$username,$password);
+$db = mysql_pconnect(localhost,$username,$password);
 if(!$db){
 	echo "Could not connect to database.";
 	error('Could not connect to database.');
