@@ -10,24 +10,29 @@ public function Scrapper($aid) {
     $this->id = $aid;
     $url = 'http://www.yummly.com/recipe/'.$aid;
     //$this->html = new simple_html_dom();
-    $this->html = file_get_html($url);
+    $this->html = @file_get_html($url);
 }
 
 private function getServingSize() {
-    $str = $this->html;
-    $yieldTag = $str->find('span[class=yield]')[0];
-    $yieldString = $yieldTag->plaintext;
-    return $yieldString;	
+    if($this->html !== FALSE){
+	$str = $this->html;
+	$yieldTag = $str->find('span[class=yield]')[0];
+	$yieldString = $yieldTag->plaintext;
+	return $yieldString;	
+    }
+    return -1;
 }
 private function getTime(){
     //var_dump($this->html);
     //$ret = $this->html->find('div[class=definition]');
-    foreach($this->html->find('div[class=definition]') as $div){
-	//echo $div.'<br>';
-	foreach($div->find('h5') as $ob){
-	    if(is_numeric(strpos($ob,'Total Time'))){
-		//echo $div->plaintext . '<br>';
-		return $div->plaintext;
+    if($this->html !== FALSE){
+	foreach($this->html->find('div[class=definition]') as $div){
+	    //echo $div.'<br>';
+	    foreach($div->find('h5') as $ob){
+		if(is_numeric(strpos($ob,'Total Time'))){
+		    //echo $div->plaintext . '<br>';
+		    return $div->plaintext;
+		}
 	    }
 	}
     }

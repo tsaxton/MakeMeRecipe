@@ -21,12 +21,9 @@ function search($query, $time, $cuisine,$excluded){
 
     $match = $data['matches'];
 
-    if(count($match) >= 10){
-	$size = 10;
-    }
-    else{
-	$size = count($match);
-    }
+    $size = count($match);
+
+    $recipe = array();
 
     for($i=0; $i < $size; $i++){
 	$id = $match[$i]['id'];
@@ -50,11 +47,13 @@ function search($query, $time, $cuisine,$excluded){
             unset($recipe[$i]);
         } 
     }
-    $recipe = array_values($recipe);
     $size = count($recipe);
 
     if($size == 0){
 	$recipe = null;
+    }
+    else{
+	$recipe = array_values($recipe);
     }
 
     //echo "<pre>"; var_dump($recipe); echo "</pre>";
