@@ -12,7 +12,7 @@ public function Scrapper($aid) {
     //$this->html = new simple_html_dom();
     $this->html = @file_get_html($url);
 }
-/*
+
 private function getServingSize() {
     if($this->html !== FALSE){
 	$str = $this->html;
@@ -21,7 +21,7 @@ private function getServingSize() {
 	return $yieldString;	
     }
     return -1;
-}*/
+}
 private function getTime(){
     //var_dump($this->html);
     //$ret = $this->html->find('div[class=definition]');
