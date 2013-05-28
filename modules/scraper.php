@@ -12,13 +12,14 @@ public function Scrapper($aid) {
     //$this->html = new simple_html_dom();
     $this->html = @file_get_html($url);
 }
-
-private function getServingSize() {
+private function scrapeServingSize() {
     if($this->html !== FALSE){
 	$str = $this->html;
-	$yieldTag = $str->find('span[class=yield]')[0];
-	$yieldString = $yieldTag->plaintext;
-	return $yieldString;	
+	$yieldTag = $str->find('span[class=yield]');
+    if ($yieldTag){
+        $yieldString = $yieldTag[0]->plaintext;
+	    return $yieldString;	
+    }
     }
     return -1;
 }
@@ -56,6 +57,16 @@ private function interpTime($str){
     return $time;
 }
 
+private function interpServings($str){
+    $pieces = explode(" ",$str);
+    for($i = 0; $i < count($pieces); $i++){
+	    if(is_numeric($pieces[$i])){
+            return $pieces[$i];
+        }
+    }
+    return -2;
+}
+
 /*function testConversion($url,$actual){
     $timeStr = getTime($url);
     $time = interpTime($timeStr);
@@ -83,6 +94,28 @@ public function getPrepTime() {
         return $timeInSeconds;
     }
 }
+
+public function getServingSize(){
+    $query = 'SELECT servingsize FROM servingsizes WHERE yummly_id =' .$this->id;
+    $result = dbQuery($query);
+    if ($result) {
+        return $result;
+    } else {
+        $url = 'http://www.yummly.com/recipe/'.$this->id;
+        $servingsize = $this->scrapeServingSize();
+        if (!is_numeric($servingsize)){
+            $servingsize = $this->interpServings($servingsize);
+        }
+        else{
+            $servingsizse = -1;
+        }
+        $insertToDb = "INSERT INTO servingsizes VALUES ('{$this->id}',$servingsize)";
+        //echo $insertToDb . "<br>";
+        mysql_query($insertToDb);
+        return $servingsize;
+    }
+}
+
 }
 // Tests
 /*testConversion('http://www.yummly.com/recipe/Thai-coconut-chicken-noodle-soup-350876','3600');

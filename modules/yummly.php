@@ -24,7 +24,6 @@ function search($query, $time, $cuisine,$excluded){
     $size = count($match);
 
     $recipe = array();
-
     for($i=0; $i < $size; $i++){
 	$id = $match[$i]['id'];
 	$scraper = new Scrapper($id);
@@ -32,7 +31,9 @@ function search($query, $time, $cuisine,$excluded){
 	$recipe[$i]['id'] = $id;
 	$recipe[$i]['ingredients'] = $match[$i]['ingredients'];
 	$recipe[$i]['totalTimeInSeconds'] = $scraper->getPrepTime();
+	$recipe[$i]['servingSize'] = $scraper->getServingSize();
 	//echo $recipe[$i]['totalTimeInSeconds'].'<br>';
+	echo $recipe[$i]['servingSize'].'<br>';
 	if(count($match[$i]['smallImageUrls']) > 0){
 	    $recipe[$i]['image'] = $match[$i]['smallImageUrls'][0];
 	}
