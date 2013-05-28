@@ -57,6 +57,22 @@
     </div>
 
     <div class="control-group">
+    <label class="control-label" for="inputDiet">Diet Type:</label>
+    <div class="controls">
+	<select name="diet">
+	    <option value="">None</option>
+	    <option value="390^Pescetarian">Pescetarian</option>
+	    <option value="387^Lacto-ovo+vegetarian">Vegetarian</option>
+	    <option value="388^Lacto+vegetarian">Lacto Vegetarian</option>
+	    <option value="389^Ovo+vegetarian">Ovo Vegetarian</option>
+	    <option value="386^Vegan">Vegan</option>
+	</select>
+    </div>
+    </div>	
+
+
+	
+    <div class="control-group">
     	<div class="controls">
       	    <button type="submit" class="btn">Find Recipe</button>
 	</div>
