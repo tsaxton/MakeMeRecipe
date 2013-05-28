@@ -32,7 +32,19 @@ if($_GET){
     	$diet=NULL;
     }
 
-    $recipes = search($ingredients,$maxTotalTimeInSeconds, $cuisine,$excluded,$diet);
+   if($_GET['minServings']){
+    $minServings =$_GET['minServings'];
+    } else{
+    	$minServings =NULL;
+    }
+    
+   if($_GET['maxServings']){
+    $maxServings =$_GET['maxServings'];
+    } else{
+    	$maxServings =NULL;
+    }
+
+    $recipes = search($ingredients,$maxTotalTimeInSeconds, $cuisine,$excluded,$diet,$minServings, $maxServings);
     if($recipes){
 	$recipes = sortRecipesByPrepTime($recipes);
 
@@ -52,7 +64,7 @@ if($_GET){
 		    <h2><a href=\"http://www.yummly.com/recipe/{$recipe['id']}\">{$recipe['name']}</h2>
 		    <p>See Recipe on Yummly</p></a>
 		    <p>Total Time: " . $recipe['totalTimeInSeconds']/60 . " minutes</p>
-		    <p>Servings: I really have no idea </p> 
+		    <p>Servings: " . $recipe['servingSize'] . " </p> 
 		    <p>Ingredients:</p>
 		    <ul>
 	    ";

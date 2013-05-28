@@ -26,6 +26,14 @@
     </div>
 
     <div class="control-group">
+	<label class="control-label" for="servingSize">Serving size:</label>
+	<div class="controls">
+	    <input type="text" id="minServings" name="minServings" placeholder="Minimum">
+	    <input type="text" id="maxServings" name="maxServings" placeholder="Maximum">
+	</div>
+    </div>
+
+    <div class="control-group">
     <label class="control-label" for="inputCuisine">Cuisine Type:</label>
     <div class="controls">
 	<select name="cuisine">

@@ -1,7 +1,7 @@
 <?php
 include 'scraper.php';
 
-function search($query, $time, $cuisine,$excluded){
+function search($query, $time, $cuisine,$excluded,$diet,$minServings, $maxServings){
     $query = str_replace(' ','+',$query);
     $query = str_replace(',','+',$query);
     $base_url =  'http://api.yummly.com/v1/api/recipes?_app_id=6082fbf2&_app_key=f4346b48f9a52cac8385d1ba029074e7';
@@ -33,7 +33,6 @@ function search($query, $time, $cuisine,$excluded){
 	$recipe[$i]['totalTimeInSeconds'] = $scraper->getPrepTime();
 	$recipe[$i]['servingSize'] = $scraper->getServingSize();
 	//echo $recipe[$i]['totalTimeInSeconds'].'<br>';
-	echo $recipe[$i]['servingSize'].'<br>';
 	if(count($match[$i]['smallImageUrls']) > 0){
 	    $recipe[$i]['image'] = $match[$i]['smallImageUrls'][0];
 	}
@@ -42,9 +41,23 @@ function search($query, $time, $cuisine,$excluded){
 	}
 	unset($scraper);
     }
-
+    //Remove recipes that exceed queried time
     for($i=0; $i < $size; $i++){
         if ($recipe[$i]['totalTimeInSeconds'] > $time || $recipe[$i]['totalTimeInSeconds'] == -1){
+            unset($recipe[$i]);
+        } 
+    }
+    $size = count($recipe);
+    if($size == 0){
+	$recipe = null;
+    }
+    else{
+	$recipe = array_values($recipe);
+    }
+
+    //Remove recipes that exceed serving size
+    for($i=0; $i < $size; $i++){
+        if (($recipe[$i]['servingSize'] > $maxServings) || ($recipe[$i]['servingSize'] < $minServings) || ($recipe[$i]['servingSize'] == -1)){
             unset($recipe[$i]);
         } 
     }
