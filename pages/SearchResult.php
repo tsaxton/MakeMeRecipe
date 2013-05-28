@@ -26,6 +26,12 @@ if($_GET){
     	$excluded=NULL;
     }
 
+   if($_GET['allowedDiet']){
+    $diet=$_GET['allowedDiet'];
+    } else{
+    	$diet=NULL;
+    }
+
     $recipes = search($ingredients,$maxTotalTimeInSeconds, $cuisine,$excluded);
     if($recipes){
 	$recipes = sortRecipesByPrepTime($recipes);
