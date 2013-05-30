@@ -30,8 +30,8 @@ function search($query, $time, $cuisine,$excluded,$diet,$minServings, $maxServin
 	$recipe[$i]['name'] = $match[$i]['recipeName'];
 	$recipe[$i]['id'] = $id;
 	$recipe[$i]['ingredients'] = $match[$i]['ingredients'];
-	#$recipe[$i]['totalTimeInSeconds'] = $scraper->getPrepTime();
-	#$recipe[$i]['servingSize'] = $scraper->getServingSize();
+	//$recipe[$i]['totalTimeInSeconds'] = $scraper->getPrepTime();
+	//$recipe[$i]['servingSize'] = $scraper->getServingSize();
 	$recipe[$i]['totalTimeInSeconds'] = 0;
 	$recipe[$i]['servingSize'] = 0;
 	//echo $recipe[$i]['totalTimeInSeconds'].'<br>';
