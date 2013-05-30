@@ -56,12 +56,22 @@ function search($query, $time, $cuisine,$excluded,$diet,$minServings, $maxServin
     }
 
     //Remove recipes that exceed serving size
-    for($i=0; $i < $size; $i++){
-        if (($recipe[$i]['servingSize'] > $maxServings) || ($recipe[$i]['servingSize'] < $minServings) || ($recipe[$i]['servingSize'] == -1)){
-            unset($recipe[$i]);
-        } 
+    if ($minServings){
+        for($i=0; $i < $size; $i++){
+            if (($recipe[$i]['servingSize'] < $minServings) || ($recipe[$i]['servingSize'] == -1)){
+                unset($recipe[$i]);
+            } 
+        }
+        $size = count($recipe);
     }
-    $size = count($recipe);
+    if ($maxServings){
+        for($i=0; $i < $size; $i++){
+            if (($recipe[$i]['servingSize'] > $maxServings) || ($recipe[$i]['servingSize'] == -1)){
+                unset($recipe[$i]);
+            } 
+        }
+        $size = count($recipe);
+    }
 
     if($size == 0){
 	$recipe = null;
