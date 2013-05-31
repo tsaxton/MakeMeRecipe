@@ -13,7 +13,9 @@ function like(recipe,user){
       {
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
 	{
-	document.getElementById(recipe).innerHTML=xmlhttp.responseText;
+	    if(xmlhttp.responseText == "success"){
+		document.getElementById(recipe).innerHTML='You like this recipe.';
+	    }
 	}
     }
     xmlhttp.open("GET","modules/like.php?user="+user+"&recipe="+recipe,true);
@@ -34,7 +36,9 @@ function dislike(recipe,user){
       {
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
 	{
-	document.getElementById(recipe).innerHTML=xmlhttp.responseText;
+	    if(xmlhttp.responseText == "success"){
+		document.getElementById(recipe).innerHTML='You\'ve disliked this recipe.';
+	    }
 	}
     }
     xmlhttp.open("GET","modules/dislike.php?user="+user+"&recipe="+recipe,true);
@@ -73,6 +77,7 @@ require('yummly.php');
 require('simple_html_dom.php');
 require('sort.php');
 require('scraper.php');
+require('databaselogin.php');
 
 function userlikes($recipe,$user){
     $sql = "SELECT * FROM recipelist where userid=$user and searchid='$recipe' and favorited=1";
@@ -188,8 +193,8 @@ if($_GET){
                     <p>See Recipe on Yummly</p></a>
                 ";
 		if ($user){
-		    $html .= "<div id=\"{$recipe['id']}\"><a href=\"#\" onClick=\"like('{$recipe['id']}',$user)\">Favourite</a>";
-		    $html .= " or <a href=\"#\" onClick=\"dislike('{$recipe['id']}',$user)\">Dislike</a></div>";
+		    $html .= "<div id=\"{$recipe['id']}\"><a href=\"javascript:like('{$recipe['id']}',$user)\">Favourite</a>";
+		    $html .= " or <a href=\"javascript:dislike('{$recipe['id']}',$user)\">Dislike</a></div>";
 		}
                 if ($minServings || $maxServings){
 		    $html .= " <p>Servings: " . $recipe['servingSize'] . " </p> "; 
@@ -215,8 +220,11 @@ if($_GET){
 		    $all .= $html;
 		}
             }
-	    echo "<h3>Favourites</h3>\n$likes\n<hr>\n";
-	    echo "<h3>More Recipes</h3>\n$all";
+	    if($likes){
+		echo "<h3>Favourites</h3>\n$likes\n<hr>\n";
+		echo "<h3>More Recipes</h3>\n";
+	    }
+	    echo $all;
             echo "</div>";
             }
     else{
