@@ -1,16 +1,43 @@
 <div class="page-header"><h2>Search Results</h2></div>
+<form class="form-horizontal" action="" method="GET">
+    <input type="hidden" name="page" value="SearchResult">
+    <div class="control-group">
+    <label class="control-label" for="inputTime">Total Time:</label>
+    <div class="controls">
+            <div class="input-append">
+        <input class="span2" id="inputTime" name="maxTotalTimeInSeconds" type="text" placeholder="60">
+        <span class="add-on">mins</span>
+        </div>
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="servingSize">Serving size:</label>
+    <div class="controls">
+        <input type="text" id="minServings" name="minServings" placeholder="Minimum">
+        <input type="text" id="maxServings" name="maxServings" placeholder="Maximum">
+    </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn">Filter Results</button>
+    </div>
+    </div>
 <?php
 
 include_once('modules/scraper.php');
 
 if($_GET){
+
+    $defaultTime = 100000;
     if ($_GET['maxTotalTimeInSeconds']){
-	$maxTotalTimeInSeconds=$_GET['maxTotalTimeInSeconds'];
-	$maxTotalTimeInSeconds=$maxTotalTimeInSeconds*60;
-    $inputtedTime = true;
+        if ($_GET['maxTotalTimeInSeconds'] == $defaultTime){
+        $maxTotalTimeInSeconds=$defaultTime;
+        }else{
+        $maxTotalTimeInSeconds=$_GET['maxTotalTimeInSeconds'];
+        $maxTotalTimeInSeconds=$maxTotalTimeInSeconds*60;
+        }
     } else{
-	$maxTotalTimeInSeconds=100000;
-    $inputedTime = false;
+	$maxTotalTimeInSeconds=$defaultTime;
     }
     if($_GET['ingredients']){
     	$ingredients= $_GET['ingredients'];
@@ -45,19 +72,19 @@ if($_GET){
     } else{
     	$maxServings =NULL;
     }
+?>
+    <input type="hidden" name="ingredients" value= <?php echo $ingredients;?> >
+    <input type="hidden" name="diet" value= <?php echo $diet;?> >
+    <input type="hidden" name="excludedIngredient" value= <?php echo $excluded;?> >
+    <input type="hidden" name="cuisine" value= <?php echo $cuisine;?> >
+    <input type="hidden" name="maxTotalTimeInSeconds" value= <?php echo $maxTotalTimeInSeconds;?> >
+</form>
 
-    if(($maxServings != NULL) || ($minServings != NULL) || ($inputtedTime == true)){
-        echo "maxServings: " . $maxServings . "\n minServings: " . $minServings . "\n Time: " . $maxTotalTimeInSeconds;
-        $simpleSearch = false;
-        $recipes = search($ingredients,$maxTotalTimeInSeconds, $cuisine,$excluded,$diet,$minServings, $maxServings);
-    }else{
-        $simpleSearch = true;
-        $recipes = basicSearch($ingredients,$maxTotalTimeInSeconds, $cuisine,$excluded,$diet,$minServings, $maxServings);
-    }
+<?php
+    $recipes = search($ingredients,$maxTotalTimeInSeconds, $cuisine,$excluded,$diet,$minServings, $maxServings);
 
-//display recipes
     if($recipes){
-            if ($simpleSearch == false){
+            if ($maxTotalTimeInSeconds != $defaultTime){
                 $recipes = sortRecipesByPrepTime($recipes);
             }
 
@@ -77,11 +104,11 @@ if($_GET){
                     <h2><a href=\"http://www.yummly.com/recipe/{$recipe['id']}\">{$recipe['name']}</h2>
                     <p>See Recipe on Yummly</p></a>
                 ";
-                if ($simpleSearch == false){
-                    echo "
-                        <p>Total Time: " . $recipe['totalTimeInSeconds']/60 . " minutes</p>
-                        <p>Servings: " . $recipe['servingSize'] . " </p> 
-                        ";
+                if ($minServings || $maxServings){
+                echo " <p>Servings: " . $recipe['servingSize'] . " </p> "; 
+                }
+                if ($maxTotalTimeInSeconds != $defaultTime){
+                echo "<p>Total Time: " . $recipe['totalTimeInSeconds']/60 . " minutes</p>";
                 }    
                 echo"
                     <p>Ingredients:</p>
