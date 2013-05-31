@@ -1,5 +1,5 @@
 <?php
-include 'scraper.php';
+//include 'scraper.php';
 
 function search($query, $time, $cuisine,$excluded,$diet,$minServings, $maxServings){
     $query = str_replace(' ','+',$query);
