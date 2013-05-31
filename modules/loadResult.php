@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="?page=SearchResult" method="GET">
+<form class="form-horizontal" action="/" method="GET">
     <div class="control-group">
     <label class="control-label" for="inputTime">Total Time:</label>
     <div class="controls">
@@ -81,6 +81,7 @@ if($_GET){
     <input type="hidden" name="diet" value= <?php echo $diet;?> >
     <input type="hidden" name="excludedIngredient" value= <?php echo $excluded;?> >
     <input type="hidden" name="cuisine" value= <?php echo $cuisine;?> >
+    <input type="hidden" name="page" value="SearchResult">
 </form>
 
 <?php
