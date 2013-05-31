@@ -78,7 +78,7 @@
     </div>
     </div>	
 
-
+    <input type="hidden" value="<?php echo $user; ?>" name="user">
 	
     <div class="control-group">
     	<div class="controls">
