@@ -1,5 +1,5 @@
 <?php
-include 'simple_html_dom.php';
+//include_once('simple_html_dom.php');
 
 class Scrapper {
 
@@ -77,10 +77,10 @@ private function interpServings($str){
     
 public function getPrepTime() {
     $query = 'SELECT time FROM preptimes WHERE yummly_id =' .$this->id;
-    $result = dbQuery($query);
+    /*$result = dbQuery($query);
     if ($result) {
         return $result;
-    } else {
+    } else {*/
         $url = 'http://www.yummly.com/recipe/'.$this->id;
         $time = $this->getTime();
         if(!is_numeric($time)){
@@ -89,19 +89,19 @@ public function getPrepTime() {
         else{
                 $timeInSeconds = -1;
         }
-        $insertToDb = "INSERT INTO preptimes VALUES ('{$this->id}',$timeInSeconds)";
+        /*$insertToDb = "INSERT INTO preptimes VALUES ('{$this->id}',$timeInSeconds)";
         //echo $insertToDb . "<br>";
-        mysql_query($insertToDb);
+        mysql_query($insertToDb);*/
         return $timeInSeconds;
-    }
+    //}
 }
 
 public function getServingSize(){
     $query = 'SELECT servingsize FROM servingsizes WHERE yummly_id =' .$this->id;
-    $result = dbQuery($query);
+    /*$result = dbQuery($query);
     if ($result) {
         return $result;
-    } else {
+    } else {*/
         $url = 'http://www.yummly.com/recipe/'.$this->id;
         $servingsize = $this->scrapeServingSize();
         if (!is_numeric($servingsize)){
@@ -110,14 +110,13 @@ public function getServingSize(){
         else{
             $servingsizse = -1;
         }
-        $insertToDb = "INSERT INTO servingsizes VALUES ('{$this->id}',$servingsize)";
+        /*$insertToDb = "INSERT INTO servingsizes VALUES ('{$this->id}',$servingsize)";
         //echo $insertToDb . "<br>";
-        mysql_query($insertToDb);
+        mysql_query($insertToDb);*/
         return $servingsize;
     }
 }
 
-}
 // Tests
 /*testConversion('http://www.yummly.com/recipe/Thai-coconut-chicken-noodle-soup-350876','3600');
 testConversion('http://www.yummly.com/recipe/Tex-mex-chicken-and-rice-soup-351658','3900');
