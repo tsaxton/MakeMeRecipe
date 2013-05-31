@@ -20,6 +20,7 @@ function dbQuery($sql){
 		return NULL;
 	}
 	$jk = 0;
+	$result = array();
 	while($row = mysql_fetch_assoc($results)){
 		$result[$jk++] = $row;
 	}

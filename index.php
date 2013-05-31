@@ -15,8 +15,8 @@ if(array_key_exists('page',$_GET)){
 else{
     $page = 'search';
 }
-if(array_key_exists('uid',$_GET)){
-    $user = $_GET['uid'];
+if(array_key_exists('user',$_GET)){
+    $user = $_GET['user'];
 }
 ?>
 <head>
