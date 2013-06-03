@@ -146,8 +146,13 @@ if($_GET){
                     <p>See Recipe on Yummly</p></a>
                 ";
 		if ($user){
-		    $html .= "<div id=\"{$recipe['id']}\"><a href=\"javascript:like('{$recipe['id']}',$user)\">Favourite</a>";
-		    $html .= " or <a href=\"javascript:dislike('{$recipe['id']}',$user)\">Dislike</a></div>";
+		    if(userlikes($recipe['id'],$user)){
+			$html .= "You favourited this recipe.";
+		    }
+		    else{
+			$html .= "<div id=\"{$recipe['id']}\"><a href=\"javascript:like('{$recipe['id']}',$user)\">Favourite</a>";
+			$html .= " or <a href=\"javascript:dislike('{$recipe['id']}',$user)\">Dislike</a></div>";
+		    }
 		}
                 if ($minServings || $maxServings){
 		    $html .= " <p>Servings: " . $recipe['servingSize'] . " </p> "; 
