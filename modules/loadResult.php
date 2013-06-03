@@ -105,7 +105,7 @@ if($_GET){
 	$user = NULL;
     }
 ?>
-    <input type="hidden" name="ingredients" value= <?php echo $ingredients;?> >
+    <input type="hidden" name="ingredients" value="<?php echo $ingredients;?>">
     <input type="hidden" name="diet" value= <?php echo $diet;?> >
     <input type="hidden" name="excludedIngredient" value= <?php echo $excluded;?> >
     <input type="hidden" name="cuisine" value= <?php echo $cuisine;?> >
