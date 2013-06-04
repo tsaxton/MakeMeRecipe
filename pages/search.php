@@ -8,7 +8,8 @@
 	    <input type="text" id="inputIngredients" name="ingredients" placeholder="chicken, rice, oatmeal">
 	</div>
     </div>
-    <div class="control-group">
+    <input class="span2" id="inputTime" name="maxTotalTimeInSeconds" type="hidden" placeholder="60">
+    <!--<div class="control-group">
 	<label class="control-label" for="inputTime">Total Time:</label>
 	<div class="controls">
       	    <div class="input-append">
@@ -16,7 +17,7 @@
 		<span class="add-on">mins</span>
 	    </div>
     	</div>
-    </div>
+    </div>-->
 
     <div class="control-group">
 	<label class="control-label" for="excludedIngredient">Excluded ingredients:</label>
@@ -25,13 +26,15 @@
 	</div>
     </div>
 
-    <div class="control-group">
+    <input type="hidden" id="minServings" name="minServings" placeholder="Minimum">
+    <input type="hidden" id="maxServings" name="maxServings" placeholder="Maximum">
+    <!--<div class="control-group">
 	<label class="control-label" for="servingSize">Number of Servings:</label>
 	<div class="controls">
 	    <input type="text" id="minServings" name="minServings" placeholder="Minimum"><br>to<br> 
 	    <input type="text" id="maxServings" name="maxServings" placeholder="Maximum">
 	</div>
-    </div>
+    </div>-->
 
     <div class="control-group">
     <label class="control-label" for="inputCuisine">Cuisine Type:</label>

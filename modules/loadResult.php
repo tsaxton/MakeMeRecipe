@@ -150,8 +150,8 @@ if($_GET){
 			$html .= "You favourited this recipe.";
 		    }
 		    else{
-			$html .= "<div id=\"{$recipe['id']}\"><a href=\"javascript:like('{$recipe['id']}',$user)\">Favourite</a>";
-			$html .= " or <a href=\"javascript:dislike('{$recipe['id']}',$user)\">Dislike</a></div>";
+			$html .= "<div id=\"{$recipe['id']}\"><img src=\"img/thumbs_up.png\" height=\"15\" width=\"15\"> <a href=\"javascript:like('{$recipe['id']}',$user)\">Favourite</a>";
+			$html .= " or <img src=\"img/thumbs_down.png\" height=\"15\" width=\"15\"> <a href=\"javascript:dislike('{$recipe['id']}',$user)\">Dislike</a></div>";
 		    }
 		}
                 if ($minServings || $maxServings){
