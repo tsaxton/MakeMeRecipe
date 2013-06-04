@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="control-group">
-    <label class="control-label" for="servingSize">Serving size:</label>
+    <label class="control-label" for="minServings">Serving size:</label>
     <div class="controls">
         <input type="text" id="minServings" name="minServings" placeholder="Minimum">
         <input type="text" id="maxServings" name="maxServings" placeholder="Maximum">
