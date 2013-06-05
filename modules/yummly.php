@@ -15,7 +15,7 @@ function search($query, $time, $cuisine,$excluded,$diet,$minServings, $maxServin
 	    $query_url .= '&excludedIngredient[]='.urlencode($food);
 	}
     }
-    $query_url .= '&maxResult=50&maxTotalTimeInSeconds=100000';
+    $query_url .= '&maxResult=25&maxTotalTimeInSeconds=100000';
     $results = file_get_contents($query_url);
     $data = json_decode($results,1);
 

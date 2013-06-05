@@ -1,5 +1,5 @@
 
-<form class="form-horizontal" action="/" method="GET">
+<form class="form-horizontal" action="" method="GET">
     <div class="control-group">
     <label class="control-label" for="inputTime">Total Time:</label>
     <div class="controls">

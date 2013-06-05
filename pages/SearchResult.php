@@ -1,5 +1,7 @@
 <div class="page-header"><h2>Search Results</h2></div>
-<div id="content"> Wait here while we load your recipes. This could take a while.</div>
+<div id="content">
+    <p>Wait here while we load your recipes. This could take a while.</p>
+    <p><img src="img/waiting.gif"></p></div>
 
 <script>
 function like(recipe,user){
@@ -70,7 +72,4 @@ xmlhttp.open("GET","modules/loadResult.php?<?php echo http_build_query($_GET,'',
 xmlhttp.send();
 };
 </script>
-
-<?php
-#include 'modules/loadResult.php';
 

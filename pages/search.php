@@ -3,9 +3,10 @@
 <form class="form-horizontal" action="" method="GET">
     <input type="hidden" name="page" value="SearchResult">
     <div class="control-group">
-	<label class="control-label" for="inputIngredients">Ingredients:</label>
+	<label class="control-label" for="inputIngredients">Available Ingredients:</label>
 	<div class="controls">
-	    <input type="text" id="inputIngredients" name="ingredients" placeholder="chicken, rice, oatmeal">
+	    <input type="text" id="inputIngredients" name="ingredients">
+	    <span class="help-block"><small>e.g.: "chicken, rice, oatmeal"</small></span>
 	</div>
     </div>
     <input class="span2" id="inputTime" name="maxTotalTimeInSeconds" type="hidden" placeholder="60">
@@ -22,7 +23,8 @@
     <div class="control-group">
 	<label class="control-label" for="excludedIngredient">Excluded ingredients:</label>
 	<div class="controls">
-	    <input type="text" id="excludedIngredient" name="excludedIngredient" placeholder="onion,olives">
+	    <input type="text" id="excludedIngredient" name="excludedIngredient">
+	    <span class="help-block"><small>e.g.: "onions, olives"</small></span>
 	</div>
     </div>
 
